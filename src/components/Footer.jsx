@@ -31,13 +31,13 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-text-primary text-white">
+    <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="flex items-center justify-center w-10 h-10 bg-primary rounded-lg">
+              <div className="flex items-center justify-center w-10 h-10 bg-green-600 rounded-lg">
                 <Leaf className="w-6 h-6 text-white" />
               </div>
               <span className="text-xl font-bold">EcoMap</span>
@@ -169,7 +169,7 @@ const Footer = () => {
       </div>
 
       {/* Environmental Commitment Badge */}
-      <div className="bg-primary/20 border-t border-primary/30 py-4">
+      <div className="bg-green-100 border-t border-green-200 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-3 text-sm">
             <div className="flex items-center gap-2">

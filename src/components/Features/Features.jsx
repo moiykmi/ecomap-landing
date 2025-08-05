@@ -14,8 +14,8 @@ const Features = () => {
         'Área de cobertura amplia',
         'Precisión hasta 5 metros'
       ],
-      color: 'text-primary',
-      bgColor: 'bg-primary/10'
+      color: 'text-green-600',
+      bgColor: 'bg-green-100'
     },
     {
       id: 'community',
@@ -28,8 +28,8 @@ const Features = () => {
         'Seguimiento comunitario',
         'Notificaciones de área'
       ],
-      color: 'text-secondary',
-      bgColor: 'bg-secondary/10'
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-100'
     },
     {
       id: 'privacy',
@@ -42,8 +42,8 @@ const Features = () => {
         'Cumplimiento de privacidad',
         'Control total de información'
       ],
-      color: 'text-success',
-      bgColor: 'bg-success/10'
+      color: 'text-emerald-600',
+      bgColor: 'bg-emerald-100'
     },
     {
       id: 'realtime',
@@ -56,8 +56,8 @@ const Features = () => {
         'Estados de progreso claros',
         'Comunicación bidireccional'
       ],
-      color: 'text-warning',
-      bgColor: 'bg-warning/10'
+      color: 'text-amber-600',
+      bgColor: 'bg-amber-100'
     },
     {
       id: 'analytics',
@@ -99,10 +99,10 @@ const Features = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Funcionalidades que Hacen la Diferencia
           </h2>
-          <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             EcoMap combina tecnología avanzada con simplicidad de uso para crear 
             la plataforma de reporte ambiental más efectiva
           </p>
@@ -125,11 +125,11 @@ const Features = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-text-primary mb-3 group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">
                   {feature.title}
                 </h3>
                 
-                <p className="text-text-secondary mb-6 leading-relaxed">
+                <p className="text-gray-600 mb-6 leading-relaxed">
                   {feature.description}
                 </p>
 
@@ -138,20 +138,20 @@ const Features = () => {
                   {feature.benefits.map((benefit, benefitIndex) => (
                     <motion.li
                       key={benefitIndex}
-                      className="flex items-center gap-2 text-sm text-text-secondary"
+                      className="flex items-center gap-2 text-sm text-gray-600"
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 + benefitIndex * 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
+                      <div className="w-1.5 h-1.5 bg-green-600 rounded-full flex-shrink-0"></div>
                       {benefit}
                     </motion.li>
                   ))}
                 </ul>
 
                 {/* Hover Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
               </div>
             </motion.div>
           ))}
@@ -165,15 +165,15 @@ const Features = () => {
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-text-primary mb-4">
+          <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
               ¿Listo para ver EcoMap en acción?
             </h3>
-            <p className="text-text-secondary mb-6">
+            <p className="text-gray-600 mb-6">
               Experimenta todas estas funcionalidades en nuestro demo interactivo
             </p>
             <motion.button
-              className="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl"
+              className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
