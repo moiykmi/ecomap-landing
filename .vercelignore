@@ -1,0 +1,22 @@
+# Development files
+node_modules
+.git
+.vscode
+.idea
+*.log
+
+# Documentation files
+README.md
+DEPLOYMENT.md
+PROJECT_INFO.md
+
+# Development configs (keep only production ones)
+eslint.config.js
+
+# Keep these for Vercel:
+# package.json
+# package-lock.json
+# vercel.json
+# vite.config.js
+# tailwind.config.js
+# postcss.config.js
