@@ -37,10 +37,10 @@ const DashboardScreen = ({ simulator }) => {
 
   const getUrgencyColor = (urgency) => {
     switch (urgency) {
-      case 'alto': return 'text-error'
-      case 'medio': return 'text-warning'
-      case 'bajo': return 'text-success'
-      default: return 'text-text-secondary'
+      case 'alto': return 'text-red-600'
+      case 'medio': return 'text-yellow-600'
+      case 'bajo': return 'text-green-600'
+      default: return 'text-gray-600'
     }
   }
 
@@ -56,7 +56,7 @@ const DashboardScreen = ({ simulator }) => {
   return (
     <div className="h-full bg-gray-50 flex flex-col">
       {/* Header */}
-      <div className="bg-primary text-white p-4">
+      <div className="bg-green-600 text-white p-4">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-lg font-semibold">EcoMap</h1>
@@ -70,7 +70,7 @@ const DashboardScreen = ({ simulator }) => {
           >
             <Filter className="w-5 h-5" />
             {activeFilter !== 'all' && (
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-warning rounded-full"></div>
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-500 rounded-full"></div>
             )}
           </button>
         </div>
@@ -97,7 +97,7 @@ const DashboardScreen = ({ simulator }) => {
               <button
                 onClick={() => setActiveFilter('all')}
                 className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                  activeFilter === 'all' ? 'bg-white text-primary' : 'bg-white/20 text-white'
+                  activeFilter === 'all' ? 'bg-white text-green-600' : 'bg-white/20 text-white'
                 }`}
               >
                 Todos
@@ -107,7 +107,7 @@ const DashboardScreen = ({ simulator }) => {
                   key={type.id}
                   onClick={() => setActiveFilter(type.id)}
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                    activeFilter === type.id ? 'bg-white text-primary' : 'bg-white/20 text-white'
+                    activeFilter === type.id ? 'bg-white text-green-600' : 'bg-white/20 text-white'
                   }`}
                 >
                   {type.icon} {type.name}
@@ -139,10 +139,10 @@ const DashboardScreen = ({ simulator }) => {
             >
               <Popup>
                 <div className="min-w-[200px] p-2">
-                  <h3 className="font-semibold text-text-primary mb-2">
+                  <h3 className="font-semibold text-gray-900 mb-2">
                     {report.title}
                   </h3>
-                  <p className="text-sm text-text-secondary mb-2">
+                  <p className="text-sm text-gray-600 mb-2">
                     {report.description.substring(0, 100)}...
                   </p>
                   <div className="flex items-center justify-between">
@@ -153,7 +153,7 @@ const DashboardScreen = ({ simulator }) => {
                       {report.status}
                     </span>
                   </div>
-                  <p className="text-xs text-text-secondary mt-2">
+                  <p className="text-xs text-gray-500 mt-2">
                     📍 {report.address}
                   </p>
                 </div>
@@ -165,7 +165,7 @@ const DashboardScreen = ({ simulator }) => {
         {/* Floating Report Button */}
         <motion.button
           onClick={() => simulator.navigateToScreen('report')}
-          className="absolute bottom-20 right-4 bg-primary text-white p-4 rounded-full shadow-lg z-10"
+          className="absolute bottom-20 right-4 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg z-10 transition-colors"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           animate={{ scale: [1, 1.05, 1] }}
@@ -176,8 +176,8 @@ const DashboardScreen = ({ simulator }) => {
 
         {/* Stats Overlay */}
         <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-3 z-10">
-          <div className="text-xs text-text-secondary mb-1">Reportes visibles</div>
-          <div className="text-lg font-bold text-primary">{filteredReports.length}</div>
+          <div className="text-xs text-gray-500 mb-1">Reportes visibles</div>
+          <div className="text-lg font-bold text-green-600">{filteredReports.length}</div>
         </div>
       </div>
 
@@ -186,7 +186,7 @@ const DashboardScreen = ({ simulator }) => {
         <div className="flex items-center justify-around">
           <button
             onClick={() => simulator.navigateToScreen('dashboard')}
-            className="flex flex-col items-center gap-1 p-2 text-primary"
+            className="flex flex-col items-center gap-1 p-2 text-green-600"
           >
             <Home className="w-5 h-5" />
             <span className="text-xs font-medium">Mapa</span>
@@ -194,7 +194,7 @@ const DashboardScreen = ({ simulator }) => {
           
           <button
             onClick={() => simulator.navigateToScreen('reportsList')}
-            className="flex flex-col items-center gap-1 p-2 text-text-secondary hover:text-primary transition-colors"
+            className="flex flex-col items-center gap-1 p-2 text-gray-500 hover:text-green-600 transition-colors"
           >
             <List className="w-5 h-5" />
             <span className="text-xs font-medium">Reportes</span>
@@ -202,7 +202,7 @@ const DashboardScreen = ({ simulator }) => {
           
           <button
             onClick={() => simulator.navigateToScreen('profile')}
-            className="flex flex-col items-center gap-1 p-2 text-text-secondary hover:text-primary transition-colors"
+            className="flex flex-col items-center gap-1 p-2 text-gray-500 hover:text-green-600 transition-colors"
           >
             <User className="w-5 h-5" />
             <span className="text-xs font-medium">Perfil</span>

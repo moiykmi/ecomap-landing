@@ -28,10 +28,10 @@ const ReportsListScreen = ({ simulator }) => {
 
   const getUrgencyColor = (urgency) => {
     switch (urgency) {
-      case 'alto': return 'text-error'
-      case 'medio': return 'text-warning'
-      case 'bajo': return 'text-success'
-      default: return 'text-text-secondary'
+      case 'alto': return 'text-red-600'
+      case 'medio': return 'text-yellow-600'
+      case 'bajo': return 'text-green-600'
+      default: return 'text-gray-600'
     }
   }
 
@@ -55,7 +55,7 @@ const ReportsListScreen = ({ simulator }) => {
   return (
     <div className="h-full bg-gray-50 flex flex-col">
       {/* Header */}
-      <div className="bg-primary text-white p-4">
+      <div className="bg-green-600 text-white p-4">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
             <button
@@ -85,7 +85,7 @@ const ReportsListScreen = ({ simulator }) => {
           <button
             onClick={() => setActiveFilter('all')}
             className={`px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-              activeFilter === 'all' ? 'bg-white text-primary' : 'bg-white/20 text-white'
+              activeFilter === 'all' ? 'bg-white text-green-600' : 'bg-white/20 text-white'
             }`}
           >
             Todos los tipos
@@ -95,7 +95,7 @@ const ReportsListScreen = ({ simulator }) => {
               key={type.id}
               onClick={() => setActiveFilter(type.id)}
               className={`px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                activeFilter === type.id ? 'bg-white text-primary' : 'bg-white/20 text-white'
+                activeFilter === type.id ? 'bg-white text-green-600' : 'bg-white/20 text-white'
               }`}
             >
               {type.icon} {type.name}
@@ -109,7 +109,7 @@ const ReportsListScreen = ({ simulator }) => {
               key={status}
               onClick={() => setStatusFilter(status)}
               className={`px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                statusFilter === status ? 'bg-white text-primary' : 'bg-white/20 text-white'
+                statusFilter === status ? 'bg-white text-green-600' : 'bg-white/20 text-white'
               }`}
             >
               {status === 'all' ? 'Todos' : status}
@@ -120,7 +120,7 @@ const ReportsListScreen = ({ simulator }) => {
 
       {/* Results Count */}
       <div className="bg-white px-4 py-3 border-b border-gray-200">
-        <p className="text-text-secondary text-sm">
+        <p className="text-gray-600 text-sm">
           Mostrando {filteredReports.length} de {mockReports.length} reportes
         </p>
       </div>
@@ -130,10 +130,10 @@ const ReportsListScreen = ({ simulator }) => {
         {filteredReports.length === 0 ? (
           <div className="p-8 text-center">
             <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-lg font-semibold text-text-primary mb-2">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
               No se encontraron reportes
             </h3>
-            <p className="text-text-secondary">
+            <p className="text-gray-600">
               Intenta cambiar los filtros o el término de búsqueda
             </p>
           </div>
@@ -156,8 +156,8 @@ const ReportsListScreen = ({ simulator }) => {
                       <div className="flex items-center gap-3">
                         <div className="text-2xl">{typeInfo.icon}</div>
                         <div>
-                          <h3 className="font-semibold text-text-primary">{report.title}</h3>
-                          <p className="text-sm text-text-secondary">{typeInfo.name}</p>
+                          <h3 className="font-semibold text-gray-900">{report.title}</h3>
+                          <p className="text-sm text-gray-600">{typeInfo.name}</p>
                         </div>
                       </div>
                       <div className="flex flex-col items-end gap-2">
@@ -171,12 +171,12 @@ const ReportsListScreen = ({ simulator }) => {
                     </div>
 
                     {/* Description */}
-                    <p className="text-text-secondary text-sm mb-3 line-clamp-2">
+                    <p className="text-gray-600 text-sm mb-3 line-clamp-2">
                       {report.description}
                     </p>
 
                     {/* Location & Time */}
-                    <div className="flex items-center justify-between text-xs text-text-secondary">
+                    <div className="flex items-center justify-between text-xs text-gray-600">
                       <div className="flex items-center gap-1">
                         <MapPin className="w-3 h-3" />
                         <span>{report.address}</span>
@@ -190,11 +190,11 @@ const ReportsListScreen = ({ simulator }) => {
                     {/* Reporter */}
                     <div className="mt-3 pt-3 border-t border-gray-100">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-text-secondary">
+                        <span className="text-xs text-gray-600">
                           Reportado por: <span className="font-medium">{report.reporter}</span>
                         </span>
                         {report.photos && report.photos.length > 0 && (
-                          <div className="flex items-center gap-1 text-xs text-text-secondary">
+                          <div className="flex items-center gap-1 text-xs text-gray-600">
                             <span>📸</span>
                             <span>{report.photos.length} foto{report.photos.length > 1 ? 's' : ''}</span>
                           </div>
@@ -204,10 +204,10 @@ const ReportsListScreen = ({ simulator }) => {
 
                     {/* Actions */}
                     <div className="mt-3 flex gap-2">
-                      <button className="flex-1 bg-primary/10 text-primary py-2 px-3 rounded-lg text-sm font-medium hover:bg-primary/20 transition-colors">
+                      <button className="flex-1 bg-green-600/10 text-green-600 py-2 px-3 rounded-lg text-sm font-medium hover:bg-green-600/20 transition-colors">
                         Ver detalles
                       </button>
-                      <button className="bg-gray-100 text-text-secondary py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors">
+                      <button className="bg-gray-100 text-gray-600 py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors">
                         Compartir
                       </button>
                     </div>
@@ -224,7 +224,7 @@ const ReportsListScreen = ({ simulator }) => {
         <div className="flex items-center justify-around">
           <button
             onClick={() => simulator.navigateToScreen('dashboard')}
-            className="flex flex-col items-center gap-1 p-2 text-text-secondary hover:text-primary transition-colors"
+            className="flex flex-col items-center gap-1 p-2 text-gray-600 hover:text-green-600 transition-colors"
           >
             <Home className="w-5 h-5" />
             <span className="text-xs font-medium">Mapa</span>
@@ -232,7 +232,7 @@ const ReportsListScreen = ({ simulator }) => {
           
           <button
             onClick={() => simulator.navigateToScreen('reportsList')}
-            className="flex flex-col items-center gap-1 p-2 text-primary"
+            className="flex flex-col items-center gap-1 p-2 text-green-600"
           >
             <List className="w-5 h-5" />
             <span className="text-xs font-medium">Reportes</span>
@@ -240,7 +240,7 @@ const ReportsListScreen = ({ simulator }) => {
           
           <button
             onClick={() => simulator.navigateToScreen('profile')}
-            className="flex flex-col items-center gap-1 p-2 text-text-secondary hover:text-primary transition-colors"
+            className="flex flex-col items-center gap-1 p-2 text-gray-600 hover:text-green-600 transition-colors"
           >
             <User className="w-5 h-5" />
             <span className="text-xs font-medium">Perfil</span>

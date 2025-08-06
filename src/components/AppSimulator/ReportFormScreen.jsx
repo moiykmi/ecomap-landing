@@ -63,17 +63,17 @@ const ReportFormScreen = ({ simulator }) => {
           animate={{ scale: 1 }}
           className="text-center"
         >
-          <div className="bg-success/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="w-10 h-10 text-success" />
+          <div className="bg-green-500/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="w-10 h-10 text-green-600" />
           </div>
-          <h2 className="text-2xl font-bold text-text-primary mb-4">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
             ¡Reporte Enviado!
           </h2>
-          <p className="text-text-secondary mb-6">
+          <p className="text-gray-600 mb-6">
             Tu reporte ha sido enviado exitosamente. Las autoridades serán notificadas y podrás seguir el progreso desde tu perfil.
           </p>
-          <div className="bg-primary/10 rounded-lg p-4">
-            <p className="text-sm text-primary font-medium">
+          <div className="bg-green-600/10 rounded-lg p-4">
+            <p className="text-sm text-green-600 font-medium">
               ID del reporte: #ECO{Date.now().toString().slice(-6)}
             </p>
           </div>
@@ -85,7 +85,7 @@ const ReportFormScreen = ({ simulator }) => {
   return (
     <div className="h-full bg-white flex flex-col">
       {/* Header */}
-      <div className="bg-primary text-white p-4 flex items-center justify-between">
+      <div className="bg-green-600 text-white p-4 flex items-center justify-between">
         <div className="flex items-center">
           <button
             onClick={() => simulator.navigateToScreen('dashboard')}
@@ -103,7 +103,7 @@ const ReportFormScreen = ({ simulator }) => {
       {/* Progress Bar */}
       <div className="bg-gray-200 h-1">
         <motion.div
-          className="bg-primary h-full"
+          className="bg-green-600 h-full"
           initial={{ width: 0 }}
           animate={{ width: `${(currentStep / 3) * 100}%` }}
           transition={{ duration: 0.3 }}
@@ -120,7 +120,7 @@ const ReportFormScreen = ({ simulator }) => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
             >
-              <h2 className="text-xl font-bold text-text-primary mb-4">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">
                 ¿Qué tipo de problema quieres reportar?
               </h2>
               
@@ -132,15 +132,15 @@ const ReportFormScreen = ({ simulator }) => {
                     onClick={() => handleInputChange('type', type.id)}
                     className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
                       formData.type === type.id
-                        ? 'border-primary bg-primary/5'
+                        ? 'border-green-600 bg-green-600/5'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <div className="text-2xl">{type.icon}</div>
                       <div>
-                        <h3 className="font-semibold text-text-primary">{type.name}</h3>
-                        <p className="text-sm text-text-secondary">{type.description}</p>
+                        <h3 className="font-semibold text-gray-900">{type.name}</h3>
+                        <p className="text-sm text-gray-600">{type.description}</p>
                       </div>
                     </div>
                   </button>
@@ -157,31 +157,31 @@ const ReportFormScreen = ({ simulator }) => {
               exit={{ opacity: 0, x: -20 }}
               className="space-y-6"
             >
-              <h2 className="text-xl font-bold text-text-primary">
+              <h2 className="text-xl font-bold text-gray-900">
                 Describe el problema
               </h2>
 
               {/* Description */}
               <div>
-                <label className="block text-sm font-medium text-text-primary mb-2">
+                <label className="block text-sm font-medium text-gray-900 mb-2">
                   Descripción detallada
                 </label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => handleInputChange('description', e.target.value)}
                   placeholder="Describe qué está sucediendo, dónde exactamente se encuentra el problema, desde cuándo lo has notado..."
-                  className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-none"
+                  className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none resize-none"
                   rows={4}
                   maxLength={500}
                 />
-                <div className="text-right text-xs text-text-secondary mt-1">
+                <div className="text-right text-xs text-gray-600 mt-1">
                   {formData.description.length}/500
                 </div>
               </div>
 
               {/* Urgency */}
               <div>
-                <label className="block text-sm font-medium text-text-primary mb-3">
+                <label className="block text-sm font-medium text-gray-900 mb-3">
                   Nivel de urgencia
                 </label>
                 <div className="grid grid-cols-3 gap-3">
@@ -196,7 +196,7 @@ const ReportFormScreen = ({ simulator }) => {
                       onClick={() => handleInputChange('urgency', urgency.value)}
                       className={`p-3 rounded-xl border-2 text-center transition-all ${
                         formData.urgency === urgency.value
-                          ? 'border-primary bg-primary/5'
+                          ? 'border-green-600 bg-green-600/5'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
@@ -209,7 +209,7 @@ const ReportFormScreen = ({ simulator }) => {
 
               {/* Photos */}
               <div>
-                <label className="block text-sm font-medium text-text-primary mb-3">
+                <label className="block text-sm font-medium text-gray-900 mb-3">
                   Fotografías (opcional)
                 </label>
                 
@@ -226,7 +226,7 @@ const ReportFormScreen = ({ simulator }) => {
                     <button
                       type="button"
                       onClick={simulatePhotoCapture}
-                      className="aspect-square border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center hover:border-primary hover:bg-primary/5 transition-colors"
+                      className="aspect-square border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center hover:border-green-600 hover:bg-green-600/5 transition-colors"
                     >
                       <Camera className="w-6 h-6 text-gray-400 mb-1" />
                       <span className="text-xs text-gray-400">Tomar foto</span>
@@ -245,25 +245,25 @@ const ReportFormScreen = ({ simulator }) => {
               exit={{ opacity: 0, x: -20 }}
               className="space-y-6"
             >
-              <h2 className="text-xl font-bold text-text-primary">
+              <h2 className="text-xl font-bold text-gray-900">
                 Ubicación y privacidad
               </h2>
 
               {/* Location */}
               <div className="bg-gray-50 rounded-xl p-4">
                 <div className="flex items-center gap-3 mb-3">
-                  <MapPin className="w-5 h-5 text-primary" />
-                  <h3 className="font-semibold text-text-primary">Ubicación actual</h3>
+                  <MapPin className="w-5 h-5 text-green-600" />
+                  <h3 className="font-semibold text-gray-900">Ubicación actual</h3>
                 </div>
-                <p className="text-sm text-text-secondary mb-3">
+                <p className="text-sm text-gray-600 mb-3">
                   📍 Av. Principal 1234, Puente Alto, Chile
                 </p>
-                <p className="text-xs text-text-secondary">
+                <p className="text-xs text-gray-600">
                   Coordenadas: -33.4489, -70.6693
                 </p>
                 <button
                   type="button"
-                  className="mt-3 text-primary text-sm font-medium hover:text-primary/80"
+                  className="mt-3 text-green-600 text-sm font-medium hover:text-green-600/80"
                 >
                   Cambiar ubicación
                 </button>
@@ -271,18 +271,18 @@ const ReportFormScreen = ({ simulator }) => {
 
               {/* Privacy */}
               <div className="space-y-4">
-                <h3 className="font-semibold text-text-primary">Opciones de privacidad</h3>
+                <h3 className="font-semibold text-gray-900">Opciones de privacidad</h3>
                 
                 <label className="flex items-start gap-3 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={formData.anonymous}
                     onChange={(e) => handleInputChange('anonymous', e.target.checked)}
-                    className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+                    className="mt-1 w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
                   />
                   <div>
-                    <div className="font-medium text-text-primary">Reporte anónimo</div>
-                    <div className="text-sm text-text-secondary">
+                    <div className="font-medium text-gray-900">Reporte anónimo</div>
+                    <div className="text-sm text-gray-600">
                       Tu nombre no será visible para otros usuarios ni autoridades
                     </div>
                   </div>
@@ -336,7 +336,7 @@ const ReportFormScreen = ({ simulator }) => {
               type="button"
               onClick={nextStep}
               disabled={currentStep === 1 && !formData.type}
-              className="flex-1 py-3 px-4 bg-primary text-white rounded-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 transition-colors"
+              className="flex-1 py-3 px-4 bg-green-600 text-white rounded-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-green-600/90 transition-colors"
             >
               Siguiente
             </button>
@@ -344,7 +344,7 @@ const ReportFormScreen = ({ simulator }) => {
             <button
               type="submit"
               disabled={isSubmitting || !formData.type || !formData.description}
-              className="flex-1 py-3 px-4 bg-primary text-white rounded-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
+              className="flex-1 py-3 px-4 bg-green-600 text-white rounded-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-green-600/90 transition-colors flex items-center justify-center gap-2"
               onClick={handleSubmit}
             >
               {isSubmitting ? (

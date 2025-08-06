@@ -3,11 +3,11 @@ import { Leaf, LogIn, UserPlus, Users } from 'lucide-react'
 
 const WelcomeScreen = ({ simulator }) => {
   return (
-    <div className="h-full bg-gradient-to-br from-primary/5 to-secondary/5 flex flex-col">
+    <div className="h-full bg-gradient-to-br from-green-50 to-blue-50 flex flex-col">
       {/* Header */}
       <div className="text-center pt-16 pb-8 px-6">
         <motion.div
-          className="bg-primary rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6"
+          className="bg-green-600 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: "spring" }}
@@ -16,7 +16,7 @@ const WelcomeScreen = ({ simulator }) => {
         </motion.div>
         
         <motion.h1
-          className="text-3xl font-bold text-text-primary mb-3"
+          className="text-3xl font-bold text-gray-900 mb-3"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -25,7 +25,7 @@ const WelcomeScreen = ({ simulator }) => {
         </motion.h1>
         
         <motion.p
-          className="text-text-secondary leading-relaxed"
+          className="text-gray-600 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
@@ -48,7 +48,7 @@ const WelcomeScreen = ({ simulator }) => {
           
           {/* Floating icons */}
           <motion.div
-            className="absolute -top-4 -right-4 bg-success text-white p-2 rounded-full text-xl"
+            className="absolute -top-4 -right-4 bg-emerald-500 text-white p-2 rounded-full text-xl"
             animate={{ y: [-5, 5, -5] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
@@ -56,7 +56,7 @@ const WelcomeScreen = ({ simulator }) => {
           </motion.div>
           
           <motion.div
-            className="absolute -bottom-4 -left-4 bg-primary text-white p-2 rounded-full text-xl"
+            className="absolute -bottom-4 -left-4 bg-green-600 text-white p-2 rounded-full text-xl"
             animate={{ y: [5, -5, 5] }}
             transition={{ duration: 2, repeat: Infinity, delay: 1 }}
           >
@@ -64,7 +64,7 @@ const WelcomeScreen = ({ simulator }) => {
           </motion.div>
           
           <motion.div
-            className="absolute top-1/2 -left-8 bg-secondary text-white p-2 rounded-full text-xl"
+            className="absolute top-1/2 -left-8 bg-blue-500 text-white p-2 rounded-full text-xl"
             animate={{ x: [-5, 5, -5] }}
             transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
           >
@@ -77,7 +77,7 @@ const WelcomeScreen = ({ simulator }) => {
       <div className="p-6 space-y-4">
         <motion.button
           onClick={() => simulator.navigateToScreen('login')}
-          className="w-full bg-primary text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-3 shadow-lg"
+          className="w-full bg-green-600 text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-3 shadow-lg hover:bg-green-700 transition-colors"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
@@ -89,7 +89,7 @@ const WelcomeScreen = ({ simulator }) => {
 
         <motion.button
           onClick={() => simulator.navigateToScreen('login')}
-          className="w-full bg-white border-2 border-primary text-primary py-4 rounded-xl font-semibold flex items-center justify-center gap-3"
+          className="w-full bg-white border-2 border-green-600 text-green-600 py-4 rounded-xl font-semibold flex items-center justify-center gap-3 hover:bg-green-50 transition-colors"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
@@ -101,7 +101,7 @@ const WelcomeScreen = ({ simulator }) => {
 
         <motion.button
           onClick={simulator.loginAnonymous}
-          className="w-full bg-gray-100 text-text-secondary py-4 rounded-xl font-medium flex items-center justify-center gap-3"
+          className="w-full bg-gray-100 text-gray-600 py-4 rounded-xl font-medium flex items-center justify-center gap-3 hover:bg-gray-200 transition-colors"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
@@ -119,7 +119,7 @@ const WelcomeScreen = ({ simulator }) => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.9 }}
       >
-        <p className="text-xs text-text-secondary">
+        <p className="text-xs text-gray-500">
           Al continuar, aceptas nuestros términos y condiciones
         </p>
       </motion.div>
