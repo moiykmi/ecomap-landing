@@ -12,42 +12,31 @@ import ProfileScreen from './ProfileScreen'
 const AppSimulator = ({ onClose }) => {
   const simulator = useAppSimulator()
 
-  // Debug logging
-  console.log('🎮 AppSimulator rendering with screen:', simulator.currentScreen)
-
   const renderScreen = () => {
-    try {
-      switch (simulator.currentScreen) {
-        case 'welcome':
-          return <WelcomeScreen simulator={simulator} />
-        case 'login':
-          return <LoginScreen simulator={simulator} />
-        case 'dashboard':
-          return <DashboardScreen simulator={simulator} />
-        case 'report':
-          return <ReportFormScreen simulator={simulator} />
-        case 'reportsList':
-          return <ReportsListScreen simulator={simulator} />
-        case 'profile':
-          return <ProfileScreen simulator={simulator} />
-        default:
-          console.log('⚠️ Using default WelcomeScreen for:', simulator.currentScreen)
-          return <WelcomeScreen simulator={simulator} />
-      }
-    } catch (error) {
-      console.error('❌ Error rendering screen:', error)
-      return <div className="p-4 text-red-600">Error loading screen: {error.message}</div>
+    switch (simulator.currentScreen) {
+      case 'welcome':
+        return <WelcomeScreen simulator={simulator} />
+      case 'login':
+        return <LoginScreen simulator={simulator} />
+      case 'dashboard':
+        return <DashboardScreen simulator={simulator} />
+      case 'report':
+        return <ReportFormScreen simulator={simulator} />
+      case 'reportsList':
+        return <ReportsListScreen simulator={simulator} />
+      case 'profile':
+        return <ProfileScreen simulator={simulator} />
+      default:
+        return <WelcomeScreen simulator={simulator} />
     }
   }
 
   const handleBackdropClick = (e) => {
-    console.log('🖱️ Backdrop clicked - closing simulator')
     onClose()
   }
 
   const handleModalClick = (e) => {
     e.stopPropagation()
-    console.log('🖱️ Modal content clicked - keeping open')
   }
 
   return (
@@ -127,52 +116,75 @@ const AppSimulator = ({ onClose }) => {
           {/* Instructions */}
           <div className="mt-8 max-w-2xl mx-auto">
             <div className="bg-white rounded-xl p-6 shadow-lg">
-              <h3 className="text-lg font-semibold text-text-primary mb-4">
-                💡 Instrucciones del Demo
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                🎯 Cómo usar este demo
               </h3>
-              <div className="space-y-3 text-text-secondary">
+              <div className="space-y-3 text-gray-700">
                 {simulator.currentScreen === 'welcome' && (
-                  <p>
-                    <strong>Paso 1:</strong> Elige cómo quieres acceder a EcoMap. 
-                    Puedes iniciar sesión, registrarte o continuar como usuario anónimo.
-                  </p>
+                  <div>
+                    <p className="mb-3">
+                      <strong>Bienvenido al demo interactivo de EcoMap.</strong> Esta es la pantalla de inicio donde los usuarios eligen cómo acceder a la aplicación.
+                    </p>
+                    <p className="text-sm bg-blue-50 p-3 rounded-lg">
+                      💡 <strong>Prueba:</strong> Haz clic en cualquiera de los botones para ver cómo funciona el flujo de acceso.
+                    </p>
+                  </div>
                 )}
                 {simulator.currentScreen === 'login' && (
-                  <p>
-                    <strong>Paso 2:</strong> Simula el inicio de sesión con cualquier email. 
-                    En la app real, aquí validaríamos tus credenciales.
-                  </p>
+                  <div>
+                    <p className="mb-3">
+                      <strong>Pantalla de inicio de sesión.</strong> Los usuarios pueden ingresar con su email y contraseña de forma segura.
+                    </p>
+                    <p className="text-sm bg-blue-50 p-3 rounded-lg">
+                      💡 <strong>Prueba:</strong> Escribe cualquier email válido y haz clic en "Iniciar Sesión" para continuar.
+                    </p>
+                  </div>
                 )}
                 {simulator.currentScreen === 'dashboard' && (
                   <div>
-                    <p className="mb-2">
-                      <strong>Paso 3:</strong> Explora el mapa principal de EcoMap:
+                    <p className="mb-3">
+                      <strong>Mapa principal de EcoMap.</strong> Aquí los usuarios ven todos los reportes ambientales de su área geográfica.
                     </p>
-                    <ul className="list-disc list-inside space-y-1 text-sm">
-                      <li>Haz clic en los marcadores para ver reportes existentes</li>
-                      <li>Usa los filtros para mostrar tipos específicos de problemas</li>
-                      <li>Presiona "Reportar" para crear un nuevo reporte</li>
-                      <li>Navega usando los tabs inferiores</li>
-                    </ul>
+                    <div className="text-sm bg-blue-50 p-3 rounded-lg">
+                      <p className="font-medium mb-2">💡 <strong>Características principales:</strong></p>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Marcadores de colores indican diferentes tipos de problemas</li>
+                        <li>Filtros para buscar reportes específicos</li>
+                        <li>Botón "Reportar" para crear nuevos reportes</li>
+                        <li>Navegación inferior para acceder a otras secciones</li>
+                      </ul>
+                    </div>
                   </div>
                 )}
                 {simulator.currentScreen === 'report' && (
-                  <p>
-                    <strong>Paso 4:</strong> Crea un reporte de problema ambiental. 
-                    Completa el formulario simulando una situación real.
-                  </p>
+                  <div>
+                    <p className="mb-3">
+                      <strong>Formulario de reporte ambiental.</strong> Los usuarios pueden reportar problemas con fotos, ubicación y detalles.
+                    </p>
+                    <p className="text-sm bg-blue-50 p-3 rounded-lg">
+                      💡 <strong>Funcionalidad:</strong> Completa el formulario para simular cómo los ciudadanos reportan problemas ambientales.
+                    </p>
+                  </div>
                 )}
                 {simulator.currentScreen === 'reportsList' && (
-                  <p>
-                    <strong>Explorar:</strong> Ve todos los reportes de la comunidad. 
-                    Filtra por tipo, estado o urgencia para encontrar información específica.
-                  </p>
+                  <div>
+                    <p className="mb-3">
+                      <strong>Lista de reportes comunitarios.</strong> Vista organizada de todos los reportes con filtros y estado de seguimiento.
+                    </p>
+                    <p className="text-sm bg-blue-50 p-3 rounded-lg">
+                      💡 <strong>Beneficio:</strong> Los usuarios pueden seguir el progreso de reportes y ver el impacto de la comunidad.
+                    </p>
+                  </div>
                 )}
                 {simulator.currentScreen === 'profile' && (
-                  <p>
-                    <strong>Perfil:</strong> Ve tu actividad en EcoMap, estadísticas 
-                    personales y configura tus preferencias.
-                  </p>
+                  <div>
+                    <p className="mb-3">
+                      <strong>Perfil del usuario.</strong> Estadísticas personales, historial de reportes y configuración de cuenta.
+                    </p>
+                    <p className="text-sm bg-blue-50 p-3 rounded-lg">
+                      💡 <strong>Gamificación:</strong> Los usuarios ven su impacto ambiental y obtienen reconocimiento por su participación.
+                    </p>
+                  </div>
                 )}
               </div>
             </div>

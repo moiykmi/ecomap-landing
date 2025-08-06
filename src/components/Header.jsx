@@ -40,11 +40,7 @@ const Header = ({ onShowDemo }) => {
               Funcionalidades
             </button>
             <button 
-              onClick={(e) => {
-                console.log('🎯 Header Demo button clicked!')
-                e.preventDefault()
-                onShowDemo()
-              }}
+              onClick={onShowDemo}
               className="text-gray-600 hover:text-green-600 transition-colors font-medium"
             >
               Demo
@@ -60,11 +56,7 @@ const Header = ({ onShowDemo }) => {
           {/* CTA Button */}
           <div className="hidden md:block">
             <button 
-              onClick={(e) => {
-                console.log('🎯 Header CTA button clicked!')
-                e.preventDefault()
-                onShowDemo()
-              }}
+              onClick={onShowDemo}
               className="bg-green-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
             >
               Probar Ahora
