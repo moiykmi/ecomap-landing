@@ -33,11 +33,12 @@ const AppSimulator = ({ onClose }) => {
 
   return (
     <motion.div
-      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
+      style={{ zIndex: 9999 }}
     >
       <motion.div
         className="bg-white rounded-3xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden"
@@ -47,7 +48,7 @@ const AppSimulator = ({ onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-primary text-white p-6 flex items-center justify-between">
+        <div className="bg-green-600 text-white p-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Smartphone className="w-6 h-6" />

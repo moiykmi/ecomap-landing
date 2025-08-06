@@ -11,23 +11,40 @@ import Footer from './components/Footer'
 function App() {
   const [showSimulator, setShowSimulator] = useState(false)
 
+  const handleShowDemo = () => {
+    console.log('Demo button clicked!')
+    setShowSimulator(true)
+  }
+
+  const handleCloseDemo = () => {
+    console.log('Demo closed!')
+    setShowSimulator(false)
+  }
+
   return (
     <div className="min-h-screen bg-background">
-      <Header onShowDemo={() => setShowSimulator(true)} />
+      <Header onShowDemo={handleShowDemo} />
       
       {showSimulator ? (
-        <AppSimulator onClose={() => setShowSimulator(false)} />
+        <AppSimulator onClose={handleCloseDemo} />
       ) : (
         <main>
-          <HeroSection onShowDemo={() => setShowSimulator(true)} />
+          <HeroSection onShowDemo={handleShowDemo} />
           <Stats />
           <Features />
           <Stakeholders />
-          <CTASection onShowDemo={() => setShowSimulator(true)} />
+          <CTASection onShowDemo={handleShowDemo} />
         </main>
       )}
       
       <Footer />
+      
+      {/* Debug indicator */}
+      {showSimulator && (
+        <div className="fixed top-4 left-4 bg-red-500 text-white px-2 py-1 text-xs z-[9999] rounded">
+          SIMULATOR ACTIVE
+        </div>
+      )}
     </div>
   )
 }
