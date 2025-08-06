@@ -1,39 +1,28 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import { Plus, Filter, Home, List, User, Search } from 'lucide-react'
-import { mockReports, reportTypes } from '../../data/mockReports'
-import L from 'leaflet'
-
-// Fix for default markers in React-Leaflet
-delete L.Icon.Default.prototype._getIconUrl
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-})
-
-const createCustomIcon = (color) => {
-  return L.divIcon({
-    className: 'custom-marker',
-    html: `<div style="background-color: ${color}; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"></div>`,
-    iconSize: [20, 20],
-    iconAnchor: [10, 10],
-  })
-}
+import { Plus, Filter, Home, List, User, Search, MapPin } from 'lucide-react'
 
 const DashboardScreen = ({ simulator }) => {
   const [activeFilter, setActiveFilter] = useState('all')
   const [showFilters, setShowFilters] = useState(false)
 
+  // Mock data for demo
+  const mockReports = [
+    { id: 1, title: 'Basura en parque', type: 'waste', urgency: 'medio', status: 'nuevo', address: 'Parque Central', description: 'Acumulación de basura en área recreativa' },
+    { id: 2, title: 'Contaminación río', type: 'water', urgency: 'alto', status: 'en-revision', address: 'Río Mapocho', description: 'Agua contaminada afecta vida acuática' },
+    { id: 3, title: 'Humo de fábrica', type: 'air', urgency: 'medio', status: 'resuelto', address: 'Zona Industrial', description: 'Emisiones excesivas de chimenea' },
+  ]
+
+  const reportTypes = [
+    { id: 'waste', name: 'Residuos', icon: '🗑️', color: '#f97316' },
+    { id: 'water', name: 'Agua', icon: '💧', color: '#3b82f6' },
+    { id: 'air', name: 'Aire', icon: '🌬️', color: '#8b5cf6' },
+    { id: 'noise', name: 'Ruido', icon: '🔊', color: '#ef4444' },
+  ]
+
   const filteredReports = mockReports.filter(report => 
     activeFilter === 'all' || report.type === activeFilter
   )
-
-  const getMarkerIcon = (report) => {
-    const reportType = reportTypes.find(type => type.id === report.type)
-    return createCustomIcon(reportType?.color || '#2E7D32')
-  }
 
   const getUrgencyColor = (urgency) => {
     switch (urgency) {
@@ -120,47 +109,71 @@ const DashboardScreen = ({ simulator }) => {
 
       {/* Map */}
       <div className="flex-1 relative">
-        <MapContainer
-          center={[-33.4489, -70.6693]}
-          zoom={12}
-          style={{ height: '100%', width: '100%' }}
-          className="z-0"
-        >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution="&copy; OpenStreetMap contributors"
-          />
+        {/* Simplified Map View */}
+        <div className="h-full bg-gradient-to-br from-green-100 to-blue-100 relative overflow-hidden">
+          {/* Map Background Pattern */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="w-full h-full bg-green-200 bg-opacity-30"></div>
+            <div className="absolute top-0 left-0 w-full h-full">
+              {/* Grid pattern to simulate map */}
+              <div className="w-full h-full" style={{ 
+                backgroundImage: 'linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)',
+                backgroundSize: '50px 50px'
+              }}></div>
+            </div>
+          </div>
           
-          {filteredReports.map(report => (
-            <Marker
-              key={report.id}
-              position={[report.location.lat, report.location.lng]}
-              icon={getMarkerIcon(report)}
-            >
-              <Popup>
-                <div className="min-w-[200px] p-2">
-                  <h3 className="font-semibold text-gray-900 mb-2">
-                    {report.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-2">
-                    {report.description.substring(0, 100)}...
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className={`text-sm font-medium ${getUrgencyColor(report.urgency)}`}>
-                      Urgencia: {report.urgency}
-                    </span>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(report.status)}`}>
-                      {report.status}
-                    </span>
-                  </div>
-                  <p className="text-xs text-gray-500 mt-2">
-                    📍 {report.address}
-                  </p>
+          {/* Mock Map Markers */}
+          {filteredReports.map((report, index) => {
+            const reportType = reportTypes.find(type => type.id === report.type)
+            return (
+              <motion.div
+                key={report.id}
+                className="absolute cursor-pointer"
+                style={{
+                  top: `${30 + index * 15}%`,
+                  left: `${20 + index * 20}%`,
+                }}
+                whileHover={{ scale: 1.2 }}
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+              >
+                <div 
+                  className="w-8 h-8 rounded-full border-3 border-white shadow-lg flex items-center justify-center text-white font-bold text-sm relative"
+                  style={{ backgroundColor: reportType?.color }}
+                >
+                  {reportType?.icon}
+                  <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-4 border-transparent border-t-current"></div>
                 </div>
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
+                
+                {/* Tooltip on hover */}
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-white rounded-lg shadow-lg text-xs whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity z-20">
+                  <div className="font-semibold text-gray-900">{report.title}</div>
+                  <div className="text-gray-600">{report.address}</div>
+                  <div className={`font-medium ${getUrgencyColor(report.urgency)}`}>
+                    {report.urgency} urgencia
+                  </div>
+                </div>
+              </motion.div>
+            )
+          })}
+          
+          {/* Map Legend */}
+          <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-3">
+            <h4 className="font-semibold text-sm text-gray-900 mb-2">Tipos de Reporte</h4>
+            <div className="space-y-1">
+              {reportTypes.map(type => (
+                <div key={type.id} className="flex items-center gap-2 text-xs">
+                  <div 
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: type.color }}
+                  ></div>
+                  <span className="text-gray-700">{type.icon} {type.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* Floating Report Button */}
         <motion.button
