@@ -12,40 +12,66 @@ import ProfileScreen from './ProfileScreen'
 const AppSimulator = ({ onClose }) => {
   const simulator = useAppSimulator()
 
+  // Debug logging
+  console.log('🎮 AppSimulator rendering with screen:', simulator.currentScreen)
+
   const renderScreen = () => {
-    switch (simulator.currentScreen) {
-      case 'welcome':
-        return <WelcomeScreen simulator={simulator} />
-      case 'login':
-        return <LoginScreen simulator={simulator} />
-      case 'dashboard':
-        return <DashboardScreen simulator={simulator} />
-      case 'report':
-        return <ReportFormScreen simulator={simulator} />
-      case 'reportsList':
-        return <ReportsListScreen simulator={simulator} />
-      case 'profile':
-        return <ProfileScreen simulator={simulator} />
-      default:
-        return <WelcomeScreen simulator={simulator} />
+    try {
+      switch (simulator.currentScreen) {
+        case 'welcome':
+          return <WelcomeScreen simulator={simulator} />
+        case 'login':
+          return <LoginScreen simulator={simulator} />
+        case 'dashboard':
+          return <DashboardScreen simulator={simulator} />
+        case 'report':
+          return <ReportFormScreen simulator={simulator} />
+        case 'reportsList':
+          return <ReportsListScreen simulator={simulator} />
+        case 'profile':
+          return <ProfileScreen simulator={simulator} />
+        default:
+          console.log('⚠️ Using default WelcomeScreen for:', simulator.currentScreen)
+          return <WelcomeScreen simulator={simulator} />
+      }
+    } catch (error) {
+      console.error('❌ Error rendering screen:', error)
+      return <div className="p-4 text-red-600">Error loading screen: {error.message}</div>
     }
+  }
+
+  const handleBackdropClick = (e) => {
+    console.log('🖱️ Backdrop clicked - closing simulator')
+    onClose()
+  }
+
+  const handleModalClick = (e) => {
+    e.stopPropagation()
+    console.log('🖱️ Modal content clicked - keeping open')
   }
 
   return (
     <motion.div
-      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-4"
+      className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center p-4"
+      style={{ 
+        zIndex: 10000,
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+      }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onClick={onClose}
-      style={{ zIndex: 9999 }}
+      onClick={handleBackdropClick}
     >
       <motion.div
         className="bg-white rounded-3xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden"
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.8, opacity: 0 }}
-        onClick={(e) => e.stopPropagation()}
+        onClick={handleModalClick}
       >
         {/* Header */}
         <div className="bg-green-600 text-white p-6 flex items-center justify-between">

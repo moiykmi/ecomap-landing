@@ -28,17 +28,25 @@ const HeroSection = ({ onShowDemo }) => {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <motion.button
-                onClick={onShowDemo}
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+                onClick={(e) => {
+                  console.log('🎯 HeroSection "Probar EcoMap" button clicked!')
+                  e.preventDefault()
+                  onShowDemo()
+                }}
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl ring-2 ring-green-600 ring-offset-2"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <Play className="w-5 h-5" />
-                Probar EcoMap
+                🎮 Probar EcoMap
               </motion.button>
               
               <motion.button
-                onClick={onShowDemo}
+                onClick={(e) => {
+                  console.log('🎯 HeroSection "Ver Demo" button clicked!')
+                  e.preventDefault()
+                  onShowDemo()
+                }}
                 className="bg-white border-2 border-green-600 text-green-700 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-green-50 transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
